@@ -5,6 +5,8 @@ ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+#gem 'image_processing',           '1.9.3'
+#gem 'mini_magick',                '4.9.5'
 # Add the Bootstrap to SASS
 gem 'bootstrap-sass', '3.4.1'
 # Use Puma as the app server
@@ -25,6 +27,7 @@ gem 'bootsnap', '1.4.6', require: false
 gem 'faker', '2.11.0'
 gem 'will_paginate',           '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'active_storage_validations', '0.8.9'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
@@ -52,6 +55,7 @@ end
 
 group :production do
   gem 'pg', '1.2.3'
+  gem 'aws-sdk-s3', '1.46.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
