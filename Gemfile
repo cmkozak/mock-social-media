@@ -5,8 +5,8 @@ ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
-#gem 'image_processing',           '1.9.3'
-#gem 'mini_magick',                '4.9.5'
+gem 'image_processing',           '1.9.3'
+gem 'mini_magick',                '4.9.5'
 # Add the Bootstrap to SASS
 gem 'bootstrap-sass', '3.4.1'
 # Use Puma as the app server
