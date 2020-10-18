@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.avatar.attach(params[:user][:avatar])
     if @user.save
       log_in @user
       flash[:success] = "Welcome to the Sample App!"
@@ -64,10 +65,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
-
-  # Before filters
 
   # Confirms the correct user
   def correct_user

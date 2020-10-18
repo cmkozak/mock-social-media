@@ -24,8 +24,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should redirect update when not logged in" do
-    patch user_path(@user), params: { user: { name: @user.name,
-                                              email: @user.email } }
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
     assert_not flash.empty?
     assert_redirected_to login_url
   end
@@ -39,8 +38,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect update when logged in as wrong user" do
     log_in_as(@other_user)
-    patch user_path(@user), params: { user: { name: @user.name,
-                                              email: @user.email } }
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
     assert flash.empty?
     assert_redirected_to root_url
   end
