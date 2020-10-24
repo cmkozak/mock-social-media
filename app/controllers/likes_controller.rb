@@ -7,7 +7,10 @@ class LikesController < ApplicationController
             if already_liked?
               flash[:notice] = "You can't like more than once"
             else
-              @micropost.likes.create(user_id: current_user.id)
+                @micropost.likes.create(user_id: current_user.id)
+                respond_to do |format|
+                    format.js
+                end
             end
         end
     end
@@ -17,8 +20,16 @@ class LikesController < ApplicationController
             flash[:notice] = "Cannot unlike"
         else
             @like.destroy
+            respond_to do |format|
+                format.js
+            end
         end
     end
+
+    def get_post
+        Micropost.find(params[:micropost_id])
+    end
+    helper_method :get_post
 
     private
 
