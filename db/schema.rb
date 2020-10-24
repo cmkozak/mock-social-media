@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_204000) do
+ActiveRecord::Schema.define(version: 2020_10_24_152617) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_10_21_204000) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.string "bio"
+    t.string "location"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

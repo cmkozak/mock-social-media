@@ -9,6 +9,12 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    <div class="location">
+      <%= @user.location%>
+    </div>
+    <div class="bio">
+      <%= @user.bio%>
+    </div>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>

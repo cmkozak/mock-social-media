@@ -7,8 +7,9 @@ class User < ApplicationRecord
     has_many :passive_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent: :destroy
     has_many :following, through: :active_relationships,  source: :followed
     has_many :followers, through: :passive_relationships, source: :follower
-    attr_accessor :remember_token
+    attr_accessor :remember_token, :remove_user_avatar
     before_save { email.downcase! }
+    after_save :purge_avatar, if: :remove_user_avatar
     validates :name, presence: true, length: { maximum: 50}
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :email, presence: true,
@@ -21,6 +22,8 @@ class User < ApplicationRecord
         message: "must be a valid image format" },
         size: { less_than: 5.megabytes,
         message:     "should be less than 5MB" }
+    validates :bio, length: { maximum: 250 }
+    validates :location, length: { maximum: 30 }
 
     # Returns the hash digest of the given string
     def User.digest(string)
@@ -70,5 +73,12 @@ class User < ApplicationRecord
     # Returns true if the current user is following the other user.
     def following?(other_user)
         following.include?(other_user)
+    end
+
+    private
+
+    # Removes the avatar if user removes avatar in (views/users/edit)
+    def purge_avatar
+        avatar.purge_later
     end
 end

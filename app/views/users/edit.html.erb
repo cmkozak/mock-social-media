@@ -11,14 +11,29 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :bio %>
+      <%= f.text_field :bio, class: 'form-control'%>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.label :location %>
+      <%= f.text_field :location, class: 'form-control' %>
 
+      <button type="button" id="password-reset-button">Reset Password</button>
+      <div id="password-reset" style="display: none;">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <br>
       <span class="avatar-attach">
+        <%= f.label :avatar%><br>
+        <%= avatar_for(@user) %>
         <%= f.file_field :avatar, accept: "image/jpeg,image/png" %>
+        <% if @user.avatar.attached? %>
+          <%= f.label :remove_user_avatar %>
+          <%= f.check_box :remove_user_avatar %>
+        <% end %>
       </span>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
@@ -33,5 +48,10 @@
       alert("Maximum file size is 5MB. Please choose a smaller file.");
       $("#user_avatar").val("");
     }
+  });
+
+  $("#password-reset-button").click(function(){
+    $("#password-reset").show();
+    $("#password-reset-button").hide();
   });
 </script>
