@@ -26,11 +26,6 @@ class LikesController < ApplicationController
         end
     end
 
-    def get_post
-        Micropost.find(params[:micropost_id])
-    end
-    helper_method :get_post
-
     private
 
     def find_post
