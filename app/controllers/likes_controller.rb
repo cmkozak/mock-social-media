@@ -3,14 +3,12 @@ class LikesController < ApplicationController
     before_action :find_like, only: :destroy
 
     def create
-        def create
-            if already_liked?
-              flash[:notice] = "You can't like more than once"
-            else
-                @micropost.likes.create(user_id: current_user.id)
-                respond_to do |format|
-                    format.js
-                end
+        if already_liked?
+            flash[:notice] = "You can't like more than once"
+        else
+            @micropost.likes.create(user_id: current_user.id)
+            respond_to do |format|
+                format.js
             end
         end
     end

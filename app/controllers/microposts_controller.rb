@@ -23,6 +23,12 @@ class MicropostsController < ApplicationController
         redirect_to request.referrer
       end
     end
+
+    def show
+      @micropost = Micropost.find(params[:id])
+      @nanoposts = @micropost.nanoposts.paginate(page: params[:page])
+      @nanopost = current_user.nanoposts.build if logged_in?
+    end
   
     private
   

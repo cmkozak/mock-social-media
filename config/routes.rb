@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     resources :likes
   end
   resources :relationships, only: [:create, :destroy]
+  resources :nanoposts, only: [:create, :destroy]
 end

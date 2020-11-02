@@ -1,0 +1,9 @@
+<%= render partial: 'micropost', locals: {micropost: @micropost} %>
+<%= render 'shared/nanopost_form' %>
+<% if @micropost.nanoposts.any? %>
+    <h3>Nanoposts (<%= @micropost.nanoposts.count %>)</h3>
+    <ol class="microposts">
+        <%= render @nanoposts %>
+    </ol>
+    <%= will_paginate @nanoposts %>
+<% end %>
